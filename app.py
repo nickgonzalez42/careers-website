@@ -18,12 +18,12 @@ def load_jobs():
 def hello_world():
   jobs = load_jobs()
   return render_template('home.html',
-                        jobs=JOBS)
+                        jobs=jobs)
 
 # returns JSON
 @app.route("/api/jobs")
 def list_jobs():
-  return jsonify(JOBS)
+  return jsonify(jobs)
 
 if __name__ == "__main__":
   app.run(host="0.0.0.0", debug=True)
