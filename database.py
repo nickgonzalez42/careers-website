@@ -11,3 +11,13 @@ engine = create_engine(
 		}
 	}
 )
+
+def load_jobs():
+	with engine.connect() as conn:
+		result = conn.execute(text("select * from jobs"))
+		result_all = result.all()
+		column_names = result.keys() 
+		jobs = []
+		for row in result_all:
+			jobs.append(dict(zip(column_names, row)))
+		return jobs
